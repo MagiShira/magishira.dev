@@ -18,6 +18,7 @@ h2 { font-size: 1.5rem; margin-top: 3rem; }
 h1:focus { outline: none; }
 .wrap { max-width: 68rem; margin: 0 auto; padding-inline: 1rem; width: 100%; }
 .lead { font-size: 1.2rem; color: var(--mute); max-width: 36rem; }
+.eyebrow { font-size: .85rem; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin: 0 0 1rem; }
 
 /* ---- chrome ---- */
 header { position: sticky; top: 0; z-index: 1; background: var(--bg); border-bottom: 1px solid var(--line); }

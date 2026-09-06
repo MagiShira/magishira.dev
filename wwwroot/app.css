@@ -11,7 +11,7 @@
 /* ---- base ---- */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration-color: var(--accent); }
 h1, h2, h3 { letter-spacing: -.02em; line-height: 1.15; margin: 0 0 .75rem; }
 h1 { font-size: clamp(2rem, 5vw, 3.25rem); }
@@ -25,7 +25,14 @@ h1:focus { outline: none; }
 header { position: sticky; top: 0; z-index: 1; background: var(--bg); border-bottom: 1px solid var(--line); }
 header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; flex-wrap: wrap; }
 .brand { font-weight: 600; text-decoration: none; }
-main { padding-block: 3rem; }
+main { flex: 1; padding-block: 3rem; }
+footer { border-top: 1px solid var(--line); color: var(--mute); font-size: .9rem; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding-block: 1rem; }
+.signoff img { height: 1em; width: auto; vertical-align: -.15em; }
+.social { display: flex; gap: .25rem; }
+.social a { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: .5rem; color: var(--mute); }
+.social a:hover { color: var(--fg); background: var(--line); }
+.mi { width: 1.15rem; height: 1.15rem; fill: currentColor; }
 
 /* ---- components ---- */
 .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; min-height: 26rem; }

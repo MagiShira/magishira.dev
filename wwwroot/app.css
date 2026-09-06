@@ -33,8 +33,9 @@ main { padding-block: 3rem; }
 
 /* ---- CRT ---- */
 .crt { --u: min(1px, .24vw); --rx: 8deg; --ry: -24deg; perspective: calc(1200 * var(--u)); display: grid; place-items: center; min-height: calc(380 * var(--u)); }
-.rig { position: relative; width: calc(300 * var(--u)); height: calc(275 * var(--u)); transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateY(var(--ry)); animation: sway 8s ease-in-out infinite alternate; }
+.rig { position: relative; width: calc(300 * var(--u)); height: calc(275 * var(--u)); transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .2s ease-out; animation: sway 8s ease-in-out infinite alternate; }
 @keyframes sway { to { transform: rotateX(12deg) rotateY(-4deg); } }
+.rig.live { animation: none; }
 
 .box { position: absolute; width: var(--bw); height: var(--bh); transform-style: preserve-3d; }
 .f { position: absolute; left: 0; top: 0; width: var(--bw); height: var(--bh); background: color-mix(in oklab, var(--c), black var(--k, 0%)); }

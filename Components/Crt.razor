@@ -1,0 +1,23 @@
+@* a CRT monitor made of three CSS 3D cuboids (bezel, tube housing, stand), no WebGL and no dependencies *@
+<div class="crt" aria-hidden="true">
+    <div class="rig">
+        <div class="box bezel">
+            <div class="f F">
+                <div class="screen">
+<pre>$ whoami
+shira (she/they)
+$ <span class="cur">█</span></pre>
+                </div>
+                <span class="label">MAGISHIRA</span>
+                <span class="led"></span>
+            </div>
+            @foreach (var s in "BLRTD") { <div class="f @s"></div> }
+        </div>
+        <div class="box rear">
+            @foreach (var s in "FBLRTD") { <div class="f @s"></div> }
+        </div>
+        <div class="box stand">
+            @foreach (var s in "FBLRTD") { <div class="f @s"></div> }
+        </div>
+    </div>
+</div>

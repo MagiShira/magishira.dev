@@ -45,7 +45,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .rig.live { animation: none; }
 .rig.smack { animation: smack .3s ease-out; }
 .smack .screen { animation: glitch 1.2s ease-out; }
-.smack .screen > pre { animation: vhold 1.2s ease-in-out; }
+.smack .screen > :is(pre, .haj) { animation: vhold 1.2s ease-in-out; }
 .screen::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: calc(30 * var(--u)); background: linear-gradient(transparent, rgba(220, 255, 230, .4), transparent); opacity: 0; pointer-events: none; }
 .smack .screen::before { animation: retrace .6s linear; }
 @keyframes smack { 25% { transform: rotateX(var(--rx)) rotateY(calc(var(--ry) + 3deg)) translateX(calc(3 * var(--u))); } 65% { transform: rotateX(var(--rx)) rotateY(calc(var(--ry) - 1.5deg)); } }
@@ -71,8 +71,18 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .screen::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(transparent 0 calc(2 * var(--u)), rgba(0, 0, 0, .3) calc(2 * var(--u)) calc(3 * var(--u))), linear-gradient(115deg, rgba(255, 255, 255, .07), transparent 45%); }
 .screen pre { margin: 0; padding: calc(14 * var(--u)); font: calc(11 * var(--u))/1.5 ui-monospace, Menlo, Consolas, monospace; white-space: pre-wrap; }
 .cur { animation: blink 1s steps(1) infinite; }
+.haj { display: none; position: absolute; inset: 0; margin: auto; width: calc(120 * var(--u)); height: calc(120 * var(--u)); }
+.haj img { width: 100%; height: 100%; border-radius: 50%; animation: spin 4s linear infinite; filter: sepia(1) hue-rotate(75deg) saturate(2.5) brightness(.9) contrast(1.1); }
+.rig.blahaj .screen pre { display: none; }
+.rig.blahaj .haj { display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.osd { display: none; position: absolute; top: calc(12 * var(--u)); right: calc(14 * var(--u)); padding: calc(2 * var(--u)) calc(5 * var(--u)); font: 700 calc(12 * var(--u))/1.2 ui-monospace, Menlo, Consolas, monospace; color: #e8ffe8; background: rgba(0, 0, 0, .55); text-shadow: 0 0 calc(5 * var(--u)) var(--phos); }
+.osd::after { content: "RGB"; }
+.rig.blahaj .osd::after { content: "AV 1"; }
+.rig.osd-on .osd { display: block; animation: osd 2.5s steps(1, end); }
+@keyframes osd { to { visibility: hidden; } }
 .label { position: absolute; left: calc(24 * var(--u)); bottom: calc(14 * var(--u)); font: 600 calc(9 * var(--u))/1 system-ui; letter-spacing: .2em; color: #7a7462; }
 .led { position: absolute; right: calc(26 * var(--u)); bottom: calc(16 * var(--u)); width: calc(7 * var(--u)); height: calc(7 * var(--u)); border-radius: 50%; background: #4ade80; box-shadow: 0 0 calc(6 * var(--u)) #4ade80; }
 @keyframes blink { 50% { opacity: 0; } }
 @keyframes flicker { 0%, 92%, 96%, 100% { opacity: 1; } 94% { opacity: .85; } }
-@media (prefers-reduced-motion: reduce) { .rig, .screen, .cur, .rig.smack, .smack .screen, .smack .screen > pre, .smack .screen::before { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .rig, .screen, .cur, .rig.smack, .smack .screen, .smack .screen > :is(pre, .haj), .smack .screen::before, .haj img { animation: none; } }

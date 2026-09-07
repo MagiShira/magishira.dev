@@ -16,6 +16,9 @@ if (rig) {
         rig.classList.remove('smack');
         void rig.offsetWidth; // restart the animation on rapid taps
         rig.classList.add('smack');
+        const was = rig.classList.contains('blahaj');
+        rig.classList.toggle('blahaj', Math.random() < 1 / 6); // the old /blahaj easter egg, 1 in 6 smacks
+        if (was !== rig.classList.contains('blahaj')) { rig.classList.remove('osd-on'); void rig.offsetWidth; rig.classList.add('osd-on'); }
     });
-    rig.addEventListener('animationend', e => { if (e.animationName === 'glitch') rig.classList.remove('smack'); });
+    rig.addEventListener('animationend', e => { if (e.animationName === 'glitch') rig.classList.remove('smack'); if (e.animationName === 'osd') rig.classList.remove('osd-on'); });
 }

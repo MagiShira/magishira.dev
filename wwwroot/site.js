@@ -11,4 +11,11 @@ if (rig) {
             rig.style.setProperty('--rx', `${8 - y * 16}deg`);
         });
     }
+    // tap or click to smack it
+    rig.parentElement.addEventListener('click', () => { // click rather than pointerdown, a scroll that starts on the CRT shouldn't smack it
+        rig.classList.remove('smack');
+        void rig.offsetWidth; // restart the animation on rapid taps
+        rig.classList.add('smack');
+    });
+    rig.addEventListener('animationend', e => { if (e.animationName === 'glitch') rig.classList.remove('smack'); });
 }

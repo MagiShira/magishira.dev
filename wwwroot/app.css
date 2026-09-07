@@ -39,10 +39,19 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 @media (max-width: 48rem) { .hero { grid-template-columns: 1fr; } }
 
 /* ---- CRT ---- */
-.crt { --u: min(1px, .24vw); --rx: 8deg; --ry: -24deg; perspective: calc(1200 * var(--u)); display: grid; place-items: center; min-height: calc(380 * var(--u)); }
+.crt { cursor: pointer; user-select: none; touch-action: manipulation; --u: min(1px, .24vw); --rx: 8deg; --ry: -24deg; perspective: calc(1200 * var(--u)); display: grid; place-items: center; min-height: calc(380 * var(--u)); }
 .rig { position: relative; width: calc(300 * var(--u)); height: calc(275 * var(--u)); transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .2s ease-out; animation: sway 8s ease-in-out infinite alternate; }
 @keyframes sway { to { transform: rotateX(12deg) rotateY(-4deg); } }
 .rig.live { animation: none; }
+.rig.smack { animation: smack .3s ease-out; }
+.smack .screen { animation: glitch 1.2s ease-out; }
+.smack .screen > pre { animation: vhold 1.2s ease-in-out; }
+.screen::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: calc(30 * var(--u)); background: linear-gradient(transparent, rgba(220, 255, 230, .4), transparent); opacity: 0; pointer-events: none; }
+.smack .screen::before { animation: retrace .6s linear; }
+@keyframes smack { 25% { transform: rotateX(var(--rx)) rotateY(calc(var(--ry) + 3deg)) translateX(calc(3 * var(--u))); } 65% { transform: rotateX(var(--rx)) rotateY(calc(var(--ry) - 1.5deg)); } }
+@keyframes glitch { 0% { filter: brightness(1.9) contrast(1.4); transform: translateX(calc(-2 * var(--u))); } 8% { filter: brightness(.35); transform: translateX(calc(2 * var(--u))); } 20% { filter: brightness(1.3); transform: translateX(calc(-1 * var(--u))); } 40% { filter: brightness(.85); transform: translateX(calc(1 * var(--u))); } 60% { filter: brightness(1.1); transform: none; } 80% { filter: brightness(.95); } 100% { filter: none; } }
+@keyframes vhold { 0% { transform: none; } 12% { transform: translateY(calc(-40 * var(--u))); } 30% { transform: translateY(calc(18 * var(--u))); } 50% { transform: translateY(calc(-8 * var(--u))); } 70% { transform: translateY(calc(3 * var(--u))); } 88%, 100% { transform: none; } }
+@keyframes retrace { from { opacity: 1; transform: translateY(calc(-30 * var(--u))); } to { opacity: 1; transform: translateY(calc(200 * var(--u))); } }
 
 .box { position: absolute; width: var(--bw); height: var(--bh); transform-style: preserve-3d; }
 .f { position: absolute; left: 0; top: 0; width: var(--bw); height: var(--bh); background: color-mix(in oklab, var(--c), black var(--k, 0%)); }
@@ -66,4 +75,4 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .led { position: absolute; right: calc(26 * var(--u)); bottom: calc(16 * var(--u)); width: calc(7 * var(--u)); height: calc(7 * var(--u)); border-radius: 50%; background: #4ade80; box-shadow: 0 0 calc(6 * var(--u)) #4ade80; }
 @keyframes blink { 50% { opacity: 0; } }
 @keyframes flicker { 0%, 92%, 96%, 100% { opacity: 1; } 94% { opacity: .85; } }
-@media (prefers-reduced-motion: reduce) { .rig, .screen, .cur { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .rig, .screen, .cur, .rig.smack, .smack .screen, .smack .screen > pre, .smack .screen::before { animation: none; } }

@@ -1,9 +1,10 @@
 /* ---- tokens ---- */
 :root {
-    --bg: #fafaf9;
-    --fg: #18181b;
-    --mute: #63636e;
-    --line: #e4e4e7;
+    color-scheme: light dark;
+    --bg: light-dark(#fafaf9, #0c0c0e);
+    --fg: light-dark(#18181b, #ededf0);
+    --mute: light-dark(#63636e, #9a9aa6);
+    --line: light-dark(#e4e4e7, #26262c);
     --phos: #5cff8a;
     --accent: #6996AD;
 }

@@ -8,6 +8,8 @@
     --phos: #5cff8a;
     --accent: #6996AD;
 }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 
 /* ---- base ---- */
 * { box-sizing: border-box; }
@@ -29,8 +31,16 @@ header { position: sticky; top: 0; z-index: 1; background: var(--bg); border-bot
 header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; flex-wrap: wrap; }
 .brand { font-weight: 600; text-decoration: none; }
 nav { display: flex; align-items: center; gap: .25rem; }
-header nav a { text-decoration: none; color: var(--mute); padding: .4rem .7rem; border-radius: .5rem; font-size: .95rem; }
-header nav a:hover { color: var(--fg); background: var(--line); }
+.links { display: flex; gap: .25rem; }
+.links a { text-decoration: none; color: var(--mute); padding: .4rem .7rem; border-radius: .5rem; font-size: .95rem; }
+.links a:hover { color: var(--fg); background: var(--line); }
+.theme { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; margin-left: .25rem; border: 0; border-radius: .5rem; background: none; color: var(--mute); cursor: pointer; }
+.theme:hover { color: var(--fg); background: var(--line); }
+.theme svg { display: none; }
+.theme .moon { display: block; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .theme .moon { display: none; } :root:not([data-theme="light"]) .theme .sun { display: block; } }
+:root[data-theme="dark"] .theme .moon { display: none; }
+:root[data-theme="dark"] .theme .sun { display: block; }
 main { flex: 1; padding-block: 3rem; }
 footer { border-top: 1px solid var(--line); color: var(--mute); font-size: .9rem; }
 footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding-block: 1rem; }

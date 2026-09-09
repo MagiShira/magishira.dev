@@ -1,3 +1,11 @@
+// light/dark toggle, the inline script in App.razor applies the stored choice before first paint
+document.querySelector('.theme')?.addEventListener('click', () => {
+    const cur = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch { }
+});
+
 // tilt the CRT toward the pointer, without this (or on touch or reduced motion) the CSS sway animation runs instead
 const rig = document.querySelector('.crt .rig');
 if (rig) {

@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#6996AD" />
     <base href="/" />
     <link rel="icon" href="@Assets["blahaj.png"]" type="image/png" />
+    <script>try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch { }</script>
     <link rel="stylesheet" href="@Assets["app.css"]" />
     <script src="@Assets["site.js"]" defer></script>
     <HeadOutlet />

@@ -8,6 +8,7 @@
         <h1>My little corner of the internet.</h1>
         <p class="lead">I'm Shira. I lead the endpoint-management student team at the University of Nevada, Reno, and I'm president of Nevada eSports, where I also run the technology.</p>
         <div class="btns">
+            <a class="btn primary" href="#projects">See projects</a>
             <a class="btn" href="#contact">Get in touch</a>
         </div>
     </div>
@@ -33,6 +34,26 @@
             <h3>Infrastructure &amp; identity</h3>
             <p>A server cluster, Active Directory, and Group Policy at the university. Entra ID, Intune, and Azure for a 2,000-member organization. Proxmox and BGP for a small network operator.</p>
         </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="grid wide">
+        @foreach (var p in ProjectList.Items)
+        {
+            <div class="card">
+                <h3>
+                    @if (p.Live is not null) { <a href="@p.Live">@p.Name</a> } else { @p.Name }
+                </h3>
+                <p>@p.Blurb</p>
+                @if (p.Source is not null)
+                {
+                    <p class="src"><a href="@p.Source"><Icon Name="source_branch" /> Source</a></p>
+                }
+                <div class="tags">@foreach (var t in p.Tags) { <span>@t</span> }</div>
+            </div>
+        }
     </div>
 </section>
 

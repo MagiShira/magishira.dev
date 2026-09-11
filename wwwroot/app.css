@@ -58,9 +58,14 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .btn:hover { border-color: var(--mute); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1.5rem 2rem; }
+.grid.wide { grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); }
 .card { display: block; border-top: 1px solid var(--line); padding-top: 1rem; text-decoration: none; }
 .card h3 { font-size: 1.05rem; margin: 0 0 .35rem; }
 .card p { margin: 0; color: var(--mute); font-size: .95rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .9rem; }
+.card .src { margin-top: .5rem; }
+.card .src a { display: inline-flex; align-items: center; gap: .35rem; }
+.tags span { font-size: .8rem; padding: .15rem .6rem; border: 1px solid var(--line); border-radius: 999px; color: var(--mute); }
 section > p { max-width: 42rem; }
 
 /* ---- CRT ---- */

@@ -1,0 +1,22 @@
+@page "/projects"
+
+<PageTitle>Projects — magishira.dev</PageTitle>
+
+<h1>Projects</h1>
+
+<div class="grid wide">
+    @foreach (var p in ProjectList.Items)
+    {
+        <div class="card">
+            <h3>
+                @if (p.Live is not null) { <a href="@p.Live">@p.Name</a> } else { @p.Name }
+            </h3>
+            <p>@p.Blurb</p>
+            @if (p.Source is not null)
+            {
+                <p class="src"><a href="@p.Source"><Icon Name="source_branch" /> Source</a></p>
+            }
+            <div class="tags">@foreach (var t in p.Tags) { <span>@t</span> }</div>
+        </div>
+    }
+</div>

@@ -21,6 +21,8 @@ h1, h2, h3 { letter-spacing: -.02em; line-height: 1.15; margin: 0 0 .75rem; }
 h1 { font-size: clamp(2rem, 5vw, 3.25rem); }
 h2 { font-size: 1.5rem; margin-top: 3rem; }
 section > h2:first-child { font-size: 2rem; margin-top: 4rem; }
+.sechead > h2 { font-size: 2rem; margin: 0; }
+.sechead { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin: 4rem 0 1.25rem; }
 h1:focus { outline: none; }
 .wrap { max-width: 68rem; margin: 0 auto; padding-inline: 1rem; width: 100%; }
 .lead { font-size: 1.2rem; color: var(--mute); max-width: 36rem; }
@@ -34,6 +36,7 @@ nav { display: flex; align-items: center; gap: .25rem; }
 .links { display: flex; gap: .25rem; }
 .links a { text-decoration: none; color: var(--mute); padding: .4rem .7rem; border-radius: .5rem; font-size: .95rem; }
 .links a:hover { color: var(--fg); background: var(--line); }
+.links a.active { color: var(--fg); }
 .theme { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; margin-left: .25rem; border: 0; border-radius: .5rem; background: none; color: var(--mute); cursor: pointer; }
 .theme:hover { color: var(--fg); background: var(--line); }
 .theme svg { display: none; }
@@ -56,6 +59,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .btns { display: flex; gap: .75rem; margin-top: 1.5rem; flex-wrap: wrap; }
 .btn { display: inline-block; padding: .6rem 1rem; border-radius: .6rem; text-decoration: none; font-weight: 500; border: 1px solid var(--line); }
 .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.btn.sm { padding: .4rem .8rem; font-size: .9rem; }
 .btn:hover { border-color: var(--mute); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1.5rem 2rem; }
 .grid.wide { grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); }

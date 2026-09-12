@@ -57,6 +57,16 @@
     </div>
 </section>
 
+<section id="photos">
+    <h2>Photos</h2>
+    <ul class="carousel" aria-label="Photos">
+        @foreach (var ph in PhotoList.Items)
+        {
+            <li><a href="@Assets[ph.File]"><img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" /></a></li>
+        }
+    </ul>
+</section>
+
 <section id="about">
     <h2>About</h2>
     <p>I got into IT by way of audio: running a high school sound and lighting team meant running the network under it. Off the clock, I'm usually doing one of these.</p>

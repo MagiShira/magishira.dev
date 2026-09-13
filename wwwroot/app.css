@@ -26,6 +26,7 @@ section > h2:first-child { font-size: 2rem; margin-top: 4rem; }
 h1:focus { outline: none; }
 .wrap { max-width: 68rem; margin: 0 auto; padding-inline: 1rem; width: 100%; }
 .lead { font-size: 1.2rem; color: var(--mute); max-width: 36rem; }
+.mute { color: var(--mute); }
 .eyebrow { font-size: .85rem; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin: 0 0 1rem; }
 
 /* ---- chrome ---- */
@@ -69,8 +70,16 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .9rem; }
 .card .src { margin-top: .5rem; }
 .card .src a { display: inline-flex; align-items: center; gap: .35rem; }
+.timeline ul { margin: .35rem 0 0; padding-left: 1.1rem; }
 .tags span { font-size: .8rem; padding: .15rem .6rem; border: 1px solid var(--line); border-radius: 999px; color: var(--mute); }
-section > p { max-width: 42rem; }
+.skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1rem; margin: 0; }
+.skills dt { font-weight: 600; margin-bottom: .2rem; }
+.skills dd { margin: 0; color: var(--mute); }
+.timeline { list-style: none; padding: 0; display: grid; gap: 1.25rem; }
+.timeline > li { display: grid; grid-template-columns: 10.5rem 1fr; gap: 1rem; }
+.timeline time { color: var(--mute); font-variant-numeric: tabular-nums; white-space: nowrap; }
+section > p, .timeline > li > div { max-width: 42rem; }
+@media (max-width: 32rem) { .timeline > li { grid-template-columns: 1fr; gap: .1rem; } }
 
 /* ---- CRT ---- */
 .crt { cursor: pointer; user-select: none; touch-action: manipulation; --u: min(1px, .24vw); --rx: 8deg; --ry: -24deg; perspective: calc(1200 * var(--u)); display: grid; place-items: center; min-height: calc(380 * var(--u)); }

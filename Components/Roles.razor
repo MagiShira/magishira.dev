@@ -1,0 +1,63 @@
+<ol class="timeline">
+    <li>
+        <time>May 2025 – present</time>
+        <div>
+            <strong>Student Team Lead, Enterprise Endpoint Management</strong>, University of Nevada, Reno
+            @if (!Compact)
+            {
+                <ul class="mute">
+                    <li>Lead 7+ student technicians: onboarding, daily service-request coordination, personnel.</li>
+                    <li>Administer a multi-thousand-endpoint SCCM environment: 4 task sequences, application packaging, and Windows PE boot images. Technicians across the university escalate SCCM problems to me.</li>
+                    <li>Manage a multi-thousand-device Jamf Pro instance: application packaging, macOS configuration profiles, and device enrollment.</li>
+                    <li>Redesigned TeamDynamix workflows: ticket time-to-resolution down 8 business hours, plus about 3.5 hours saved per ticket by automation.</li>
+                    <li>Build custom applications on top of SCCM, Jamf Pro, and TeamDynamix to fill the gaps the platforms leave.</li>
+                    <li>Build Power BI and SSRS reports that unify several platforms into a single view of endpoint health.</li>
+                </ul>
+            }
+        </div>
+    </li>
+    <li>
+        <time>Jun 2024 – May 2025</time>
+        <div>
+            <strong>IT Technician</strong>, University of Nevada, Reno
+            @if (!Compact)
+            {
+                <ul class="mute">
+                    <li>Deployed about 10 Windows, macOS, and Ubuntu endpoints a week; maintained 500+ workstations.</li>
+                    <li>Resolved 1,000+ tickets, and wrote the documentation and style manual that cut new-technician onboarding by about a week.</li>
+                </ul>
+            }
+        </div>
+    </li>
+    <li>
+        <time>Jun 2024 – present</time>
+        <div>
+            <strong>President (since June 2026) and Director of Technology</strong>, Nevada eSports
+            @if (!Compact)
+            {
+                <ul class="mute">
+                    <li>IT strategy for a 2,000+ member organization: Entra ID, Intune, GitLab, MediaWiki, an Azure footprint, and a unified staff and events portal.</li>
+                    <li>A/V and live IT support for large student events.</li>
+                    <li>Own the software we build in-house, like the portal and PackWatch, and the infrastructure it runs on.</li>
+                </ul>
+            }
+        </div>
+    </li>
+    <li>
+        <time>Sep 2025 – present</time>
+        <div>
+            <strong>IT Services Consultant (freelance)</strong>, Bad Coder Dot Net, AS401840
+            @if (!Compact)
+            {
+                <ul class="mute">
+                    <li>Proxmox on NixOS, BGP, and emergency contact for three data centers in Northern Nevada and Canada.</li>
+                </ul>
+            }
+        </div>
+    </li>
+</ol>
+
+@code {
+    // Compact drops the bullets, home shows one line per role and /experience shows everything
+    [Parameter] public bool Compact { get; set; }
+}

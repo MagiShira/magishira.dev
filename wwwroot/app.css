@@ -76,16 +76,26 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .tags span { font-size: .8rem; padding: .15rem .6rem; border: 1px solid var(--line); border-radius: 999px; color: var(--mute); }
 .plain { padding-left: 1.2rem; }
 .plain li { margin-bottom: .35rem; }
+section h3 { font-size: 1.25rem; margin-top: 2.5rem; }
 .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1rem; margin: 0; }
 .skills dt { font-weight: 600; margin-bottom: .2rem; }
 .skills dd { margin: 0; color: var(--mute); }
-/* ---- /me, the bio beside a "lately" card ---- */
+/* ---- /me, the bio beside a "lately" card then the spec sheets ---- */
 .about { display: grid; grid-template-columns: 1fr 20rem; gap: 2rem 4rem; align-items: start; }
 .about p { max-width: 40rem; }
 .now { border: 1px solid var(--line); border-radius: 1rem; padding: 1.25rem 1.5rem; background: var(--card); }
 .now h2 { font-size: 1.1rem; margin-top: 0; }
 .now p { margin: 0; font-size: .85rem; }
-@media (max-width: 48rem) { .about { grid-template-columns: 1fr; } }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 4rem; }
+.panels h3 { margin: 0 0 .25rem; }
+.panels p { margin: 0 0 .75rem; }
+.panels h3 + .specs { margin-top: .75rem; }
+.panels .specs + h3 { margin-top: 2.5rem; }
+@media (max-width: 48rem) { .about, .panels { grid-template-columns: 1fr; } }
+.specs { margin: 0; }
+.specs > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; padding: .55rem 0; border-top: 1px solid var(--line); }
+.specs dt { color: var(--mute); font-size: .9rem; }
+.specs dd { margin: 0; }
 .timeline { list-style: none; padding: 0; display: grid; gap: 1.25rem; }
 .timeline > li { display: grid; grid-template-columns: 10.5rem 1fr; gap: 1rem; }
 .timeline time { color: var(--mute); font-variant-numeric: tabular-nums; white-space: nowrap; }

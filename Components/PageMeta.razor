@@ -1,0 +1,11 @@
+@* per-page title and description, the shared preview text and image live in App.razor *@
+<PageTitle>@Title</PageTitle>
+<HeadContent>
+    <meta name="description" content="@Description" />
+    <meta property="og:title" content="@Title" />
+</HeadContent>
+
+@code {
+    [Parameter, EditorRequired] public string Title { get; set; } = "";
+    [Parameter, EditorRequired] public string Description { get; set; } = "";
+}

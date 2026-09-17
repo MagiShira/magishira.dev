@@ -14,7 +14,7 @@
 
 /* ---- base ---- */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 section { scroll-margin-top: 4.5rem; }
 body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration-color: var(--accent); }
@@ -24,6 +24,12 @@ h2 { font-size: 1.5rem; margin-top: 3rem; }
 section > h2:first-child { font-size: 2rem; margin-top: 4rem; }
 .sechead > h2 { font-size: 2rem; margin: 0; }
 .sechead { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin: 4rem 0 1.25rem; }
+/* full-bleed bands without touching the markup, stretch to the viewport and pad the content back to the column */
+.band { margin: 4rem calc(50% - 50vw); padding: 3rem calc(50vw - 50%); background: var(--band); }
+.band > h2:first-child, .band > .sechead { margin-top: 0; }
+#work, #offclock, #education { --band: light-dark(#eef3f6, #151a20); }
+#photos { --band: light-dark(#e3ebf1, #0e171e); }
+#contact, #history, #volunteering { --band: light-dark(#e7eef3, #121a21); margin-bottom: 0; }
 h1:focus { outline: none; }
 .wrap { max-width: 68rem; margin: 0 auto; padding-inline: 1rem; width: 100%; }
 .lead { font-size: 1.2rem; color: var(--mute); max-width: 36rem; }
@@ -47,7 +53,7 @@ nav { display: flex; align-items: center; gap: .25rem; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .theme .moon { display: none; } :root:not([data-theme="light"]) .theme .sun { display: block; } }
 :root[data-theme="dark"] .theme .moon { display: none; }
 :root[data-theme="dark"] .theme .sun { display: block; }
-main { flex: 1; padding-block: 3rem; }
+main { flex: 1; padding-block: 3rem 0; }
 footer { border-top: 1px solid var(--line); color: var(--mute); font-size: .9rem; }
 footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; padding-block: 1rem; }
 .signoff img { height: 1em; width: auto; vertical-align: -.15em; }
@@ -157,3 +163,5 @@ section > p, .timeline > li > div { max-width: 42rem; }
 .carousel li { flex: none; scroll-snap-align: center; }
 .carousel a { display: block; text-decoration: none; }
 .carousel img { display: block; height: clamp(14rem, 42vh, 24rem); width: auto; border-radius: 1rem; background: var(--line); }
+main > .grid { margin-bottom: 3rem; }
+main > h1 { margin-bottom: 1.5rem; }

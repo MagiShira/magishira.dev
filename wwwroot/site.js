@@ -1,3 +1,12 @@
+// phone menu, CSS only shows it below 44rem when JS is present, without JS the links wrap under the brand
+const menuBtn = document.querySelector('.menubtn');
+if (menuBtn) {
+    const set = open => { menuBtn.setAttribute('aria-expanded', open); document.querySelector('header').classList.toggle('open', open); };
+    menuBtn.addEventListener('click', () => set(menuBtn.getAttribute('aria-expanded') !== 'true'));
+    for (const a of document.querySelectorAll('#menu a')) a.addEventListener('click', () => set(false));
+    addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+}
+
 // light/dark toggle, the inline script in App.razor applies the stored choice before first paint
 document.querySelector('.theme')?.addEventListener('click', () => {
     const cur = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');

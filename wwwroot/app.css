@@ -46,9 +46,22 @@ header .wrap { display: flex; align-items: center; justify-content: space-betwee
 .brand { font-weight: 600; text-decoration: none; }
 nav { display: flex; align-items: center; gap: .25rem; }
 .links { display: flex; gap: .25rem; }
+.menubtn { display: none; }
 .links a { text-decoration: none; color: var(--mute); padding: .4rem .7rem; border-radius: .5rem; font-size: .95rem; }
 .links a:hover { color: var(--fg); background: var(--line); }
 .links a.active { color: var(--fg); }
+@media (max-width: 44rem) {
+    header .wrap { position: relative; }
+    .js header .links { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; gap: 0; padding: .5rem .75rem 1rem; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px -16px rgba(0, 0, 0, .35); }
+    .js header.open .links { display: flex; }
+    .js header .links a { font-size: 1.1rem; padding: .7rem .75rem; }
+    .js .menubtn { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: .5rem; background: none; color: var(--mute); cursor: pointer; }
+    .menubtn .shut, .menubtn[aria-expanded="true"] .open { display: none; }
+    .menubtn[aria-expanded="true"] .shut { display: block; }
+    html:not(.js) header .wrap { flex-wrap: wrap; padding-block: .4rem; }
+    html:not(.js) nav { width: 100%; }
+    html:not(.js) .links { flex-wrap: wrap; }
+}
 .theme { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; margin-left: .25rem; border: 0; border-radius: .5rem; background: none; color: var(--mute); cursor: pointer; }
 .theme:hover { color: var(--fg); background: var(--line); }
 .theme svg { display: none; }

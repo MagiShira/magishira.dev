@@ -58,13 +58,30 @@
 </section>
 
 <section id="photos" class="band">
-    <h2>Photos</h2>
-    <ul class="carousel" aria-label="Photos">
-        @foreach (var ph in PhotoList.Items)
-        {
-            <li><a href="@Assets[ph.File]"><img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" /></a></li>
-        }
-    </ul>
+    <div class="sechead">
+        <h2>Photos</h2>
+        <div class="tools">
+            <button class="iconbtn" type="button" data-strip="prev" aria-label="Previous photo"><Icon Name="chevron_left" /></button>
+            <button class="iconbtn" type="button" data-strip="pause" aria-label="Pause" aria-pressed="false"><Icon Name="pause" Class="on" /><Icon Name="play_arrow" Class="off" /></button>
+            <button class="iconbtn" type="button" data-strip="next" aria-label="Next photo"><Icon Name="chevron_right" /></button>
+        </div>
+    </div>
+    <div class="marquee">
+        <ul class="carousel" aria-label="Photos">
+            @for (var copy = 0; copy < 4; copy++)
+            {
+                var hidden = copy > 0; // the extra copies make the loop seamless, keep them out of the a11y tree and tab order
+                foreach (var ph in PhotoList.Items)
+                {
+                    <li aria-hidden="@(hidden ? "true" : null)">
+                        <a href="@Assets[ph.File]" tabindex="@(hidden ? "-1" : null)">
+                            <img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" />
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
 </section>
 
 <section id="about">

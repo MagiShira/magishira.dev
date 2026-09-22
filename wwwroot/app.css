@@ -26,6 +26,12 @@ h1 { font-size: clamp(2rem, 5vw, 3.25rem); }
 h2 { font-size: 1.5rem; margin-top: 3rem; }
 section > h2:first-child { font-size: 2rem; margin-top: 4rem; }
 .sechead > h2 { font-size: 2rem; margin: 0; }
+.tools { display: flex; align-items: center; gap: .1rem; }
+.iconbtn { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: .5rem; background: none; color: var(--mute); cursor: pointer; }
+.iconbtn:hover { color: var(--fg); background: var(--line); }
+.iconbtn[aria-pressed="true"] { color: var(--fg); }
+.iconbtn .off, .iconbtn[aria-pressed="true"] .on { display: none; }
+.iconbtn[aria-pressed="true"] .off { display: block; }
 .sechead { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin: 4rem 0 1.25rem; }
 /* full-bleed bands without touching the markup, stretch to the viewport and pad the content back to the column */
 .band { margin: 4rem calc(50% - 50vw); padding: 3rem calc(50vw - 50%); background: var(--band); }
@@ -61,6 +67,8 @@ nav { display: flex; align-items: center; gap: .25rem; }
     html:not(.js) header .wrap { flex-wrap: wrap; padding-block: .4rem; }
     html:not(.js) nav { width: 100%; }
     html:not(.js) .links { flex-wrap: wrap; }
+    .carousel li { height: 15rem; }
+    .iconbtn[data-strip] { display: none; }
     .band { margin-block: 3rem; padding-block: 2rem; }
     .sechead { margin-top: 3rem; }
     .band > .sechead { margin-top: 0; }
@@ -182,10 +190,13 @@ section > p, .timeline > li > div { max-width: 42rem; }
 @media (prefers-reduced-motion: reduce) { .rig, .screen, .cur, .rig.smack, .smack .screen, .smack .screen > :is(pre, .haj), .smack .screen::before, .haj img { animation: none; } }
 
 /* ---- photos, a native scroll-snap carousel ---- */
-.carousel { list-style: none; margin: 0 calc(50% - 50vw); padding: .25rem 1rem 1rem; display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-.carousel::-webkit-scrollbar { display: none; }
-.carousel li { flex: none; scroll-snap-align: center; }
+.marquee { margin: 0 calc(50% - 50vw); overflow-x: auto; scrollbar-width: none; }
+.marquee::-webkit-scrollbar { display: none; }
+.carousel { list-style: none; margin: 0; padding: .25rem 1rem 1rem; display: flex; gap: 1rem; width: max-content; }
+@media (prefers-reduced-motion: reduce) { .carousel [aria-hidden="true"] { display: none; } [data-strip="pause"] { display: none; } }
+.carousel li { flex: none; height: clamp(14rem, 42vh, 24rem); }
+.carousel a { height: 100%; }
 .carousel a { display: block; text-decoration: none; }
-.carousel img { display: block; height: clamp(14rem, 42vh, 24rem); width: auto; border-radius: 1rem; background: var(--line); }
+.carousel img { display: block; height: 100%; width: auto; border-radius: 1rem; background: var(--line); }
 main > .grid { margin-bottom: 3rem; }
 main > h1 { margin-bottom: 1.5rem; }

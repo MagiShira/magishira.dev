@@ -15,6 +15,39 @@ document.querySelector('.theme')?.addEventListener('click', () => {
     try { localStorage.setItem('theme', next); } catch { }
 });
 
+// photo strip, a real scroll container (so swiping works) that drifts on its own over 4 rendered copies and pauses
+// on hover, touch or the pause button, reduced motion gets no drift and no copies but the buttons still work
+const strip = document.querySelector('.marquee');
+if (strip) {
+    const track = strip.querySelector('.carousel');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const copies = reduced ? 1 : 4;
+    const pauseBtn = document.querySelector('[data-strip="pause"]');
+    let hover = false, held = false, holdUntil = 0, last = performance.now();
+    const step = () => (track.querySelector('li').offsetWidth + 16); // one item plus the gap
+    const loop = () => { if (copies > 1) { const w = track.scrollWidth / copies; if (strip.scrollLeft >= w) strip.scrollLeft -= w; else if (strip.scrollLeft < 0) strip.scrollLeft += w; } };
+    const tick = now => {
+        const dt = Math.min(now - last, 50); last = now;
+        if (!reduced && !hover && !held && now > holdUntil && pauseBtn.getAttribute('aria-pressed') !== 'true') strip.scrollLeft += dt * 0.03; // ~30px/s
+        loop();
+        requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    strip.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hover = true; });
+    strip.addEventListener('pointerleave', () => hover = false);
+    strip.addEventListener('touchstart', () => held = true, { passive: true });
+    strip.addEventListener('touchend', () => { held = false; holdUntil = performance.now() + 1500; });
+    strip.addEventListener('focusin', () => hover = true);
+    strip.addEventListener('focusout', () => hover = false);
+    for (const b of document.querySelectorAll('[data-strip]')) b.addEventListener('click', () => {
+        const k = b.dataset.strip;
+        if (k === 'pause') { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); return; }
+        if (k === 'prev' && strip.scrollLeft < step()) loop(), strip.scrollLeft += copies > 1 ? track.scrollWidth / copies : 0;
+        holdUntil = performance.now() + 900; // let the smooth scroll finish before drifting again
+        strip.scrollBy({ left: (k === 'next' ? 1 : -1) * step(), behavior: 'smooth' });
+    });
+}
+
 // tilt the CRT toward the pointer, without this (or on touch or reduced motion) the CSS sway animation runs instead
 const rig = document.querySelector('.crt .rig');
 if (rig) {

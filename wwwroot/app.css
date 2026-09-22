@@ -61,6 +61,13 @@ nav { display: flex; align-items: center; gap: .25rem; }
     html:not(.js) header .wrap { flex-wrap: wrap; padding-block: .4rem; }
     html:not(.js) nav { width: 100%; }
     html:not(.js) .links { flex-wrap: wrap; }
+    .band { margin-block: 3rem; padding-block: 2rem; }
+    .sechead { margin-top: 3rem; }
+    .band > .sechead { margin-top: 0; }
+    section > h2:first-child { margin-top: 3rem; }
+    footer .wrap { flex-direction: column; align-items: center; gap: .5rem; padding-block: 1.25rem 1.5rem; text-align: center; }
+    .social { justify-content: center; }
+    section { scroll-margin-top: 4.5rem; }
 }
 .theme { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; margin-left: .25rem; border: 0; border-radius: .5rem; background: none; color: var(--mute); cursor: pointer; }
 .theme:hover { color: var(--fg); background: var(--line); }

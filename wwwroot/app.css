@@ -27,6 +27,7 @@ h2 { font-size: 1.5rem; margin-top: 3rem; }
 section > h2:first-child { font-size: 2rem; margin-top: 4rem; }
 .sechead > h2 { font-size: 2rem; margin: 0; }
 .tools { display: flex; align-items: center; gap: .1rem; }
+.tools .btn { margin-left: .75rem; }
 .iconbtn { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: .5rem; background: none; color: var(--mute); cursor: pointer; }
 .iconbtn:hover { color: var(--fg); background: var(--line); }
 .iconbtn[aria-pressed="true"] { color: var(--fg); }
@@ -69,6 +70,7 @@ nav { display: flex; align-items: center; gap: .25rem; }
     html:not(.js) .links { flex-wrap: wrap; }
     .carousel li { height: 15rem; }
     .iconbtn[data-strip] { display: none; }
+    .tools .btn { margin-left: 0; }
     .band { margin-block: 3rem; padding-block: 2rem; }
     .sechead { margin-top: 3rem; }
     .band > .sechead { margin-top: 0; }
@@ -189,7 +191,7 @@ section > p, .timeline > li > div { max-width: 42rem; }
 @keyframes flicker { 0%, 92%, 96%, 100% { opacity: 1; } 94% { opacity: .85; } }
 @media (prefers-reduced-motion: reduce) { .rig, .screen, .cur, .rig.smack, .smack .screen, .smack .screen > :is(pre, .haj), .smack .screen::before, .haj img { animation: none; } }
 
-/* ---- photos, a native scroll-snap carousel ---- */
+/* ---- photos, a native scroll-snap carousel and the gallery grid ---- */
 .marquee { margin: 0 calc(50% - 50vw); overflow-x: auto; scrollbar-width: none; }
 .marquee::-webkit-scrollbar { display: none; }
 .carousel { list-style: none; margin: 0; padding: .25rem 1rem 1rem; display: flex; gap: 1rem; width: max-content; }
@@ -197,6 +199,12 @@ section > p, .timeline > li > div { max-width: 42rem; }
 .carousel li { flex: none; height: clamp(14rem, 42vh, 24rem); }
 .carousel a { height: 100%; }
 .carousel a { display: block; text-decoration: none; }
-.carousel img { display: block; height: 100%; width: auto; border-radius: 1rem; background: var(--line); }
+.carousel img, .gallery img { display: block; border-radius: 1rem; background: var(--line); }
+.carousel img { height: 100%; width: auto; }
+.gallery img { width: 100%; height: auto; }
+.gallery figcaption { display: block; margin-top: .5rem; font-size: .9rem; color: var(--mute); }
+.gallery strong { color: var(--fg); margin-right: .25rem; }
+.gallery { columns: 18rem; column-gap: 1.25rem; margin-bottom: 3rem; }
 main > .grid { margin-bottom: 3rem; }
 main > h1 { margin-bottom: 1.5rem; }
+.gallery figure { margin: 0 0 1.25rem; break-inside: avoid; }

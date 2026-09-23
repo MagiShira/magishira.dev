@@ -64,6 +64,7 @@
             <button class="iconbtn" type="button" data-strip="prev" aria-label="Previous photo"><Icon Name="chevron_left" /></button>
             <button class="iconbtn" type="button" data-strip="pause" aria-label="Pause" aria-pressed="false"><Icon Name="pause" Class="on" /><Icon Name="play_arrow" Class="off" /></button>
             <button class="iconbtn" type="button" data-strip="next" aria-label="Next photo"><Icon Name="chevron_right" /></button>
+            <a class="btn sm" href="/photos">Whole gallery</a>
         </div>
     </div>
     <div class="marquee">
@@ -74,7 +75,7 @@
                 foreach (var ph in PhotoList.Items)
                 {
                     <li aria-hidden="@(hidden ? "true" : null)">
-                        <a href="@Assets[ph.File]" tabindex="@(hidden ? "-1" : null)">
+                        <a href="/photos#@Path.GetFileNameWithoutExtension(ph.File)" tabindex="@(hidden ? "-1" : null)">
                             <img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" />
                         </a>
                     </li>

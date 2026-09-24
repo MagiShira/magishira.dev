@@ -72,7 +72,7 @@
             @for (var copy = 0; copy < 4; copy++)
             {
                 var hidden = copy > 0; // the extra copies make the loop seamless, keep them out of the a11y tree and tab order
-                foreach (var ph in PhotoList.Items)
+                foreach (var ph in PhotoList.Strip)
                 {
                     <li aria-hidden="@(hidden ? "true" : null)">
                         <a href="/photos#@Path.GetFileNameWithoutExtension(ph.File)" tabindex="@(hidden ? "-1" : null)">

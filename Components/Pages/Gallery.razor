@@ -1,6 +1,6 @@
 @page "/photos"
 
-<PageMeta Title="Photos — magishira.dev" Description="Photos by Shira: hot air balloons over Reno, a cleanroom on the quad, a hackathon, and whatever else is around." />
+<PageMeta Title="Photos — magishira.dev" Description="Photos by Shira: graduation portraits, hot air balloons over Reno, a cleanroom on the quad, a hackathon, and whatever else is around." />
 
 <h1>Photos</h1>
 
@@ -9,7 +9,7 @@
     {
         <figure id="@Path.GetFileNameWithoutExtension(ph.File)">
             <a href="@Assets[ph.File]"><img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" /></a>
-            <figcaption><strong>@ph.Title</strong> @ph.Caption</figcaption>
+            <figcaption>@if (ph.Title.Length > 0) { <strong>@ph.Title</strong> } @ph.Caption</figcaption>
         </figure>
     }
 </div>

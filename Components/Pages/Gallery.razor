@@ -8,8 +8,10 @@
     @foreach (var ph in PhotoList.Items)
     {
         <figure id="@Path.GetFileNameWithoutExtension(ph.File)">
-            <a href="@Assets[ph.File]"><img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" /></a>
+            <a href="@Assets[ph.File]" data-title="@ph.Title" data-caption="@ph.Caption"><img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" /></a>
             <figcaption>@if (ph.Title.Length > 0) { <strong>@ph.Title</strong> } @ph.Caption</figcaption>
         </figure>
     }
 </div>
+
+<Lightbox />

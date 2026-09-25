@@ -48,6 +48,22 @@ if (strip) {
     });
 }
 
+// lightbox for the home photo strip and the /photos gallery, without JS the links still go somewhere useful
+const box = document.querySelector('.lightbox');
+if (box) {
+    document.querySelector('.carousel, .gallery').addEventListener('click', e => {
+        const a = e.target.closest('a[data-title]'); if (!a) return;
+        e.preventDefault();
+        const img = box.querySelector('img'), thumb = a.querySelector('img'); img.src = thumb.src; img.alt = thumb.alt;
+        box.querySelector('strong').textContent = a.dataset.title;
+        box.querySelector('strong').hidden = !a.dataset.title;
+        box.querySelector('span').textContent = a.dataset.caption;
+        box.showModal();
+    });
+    box.querySelector('.close').addEventListener('click', () => box.close());
+    box.addEventListener('click', e => { if (e.target === box) box.close(); }); // backdrop
+}
+
 // tilt the CRT toward the pointer, without this (or on touch or reduced motion) the CSS sway animation runs instead
 const rig = document.querySelector('.crt .rig');
 if (rig) {

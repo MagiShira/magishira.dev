@@ -75,7 +75,7 @@
                 foreach (var ph in PhotoList.Strip)
                 {
                     <li aria-hidden="@(hidden ? "true" : null)">
-                        <a href="/photos#@Path.GetFileNameWithoutExtension(ph.File)" tabindex="@(hidden ? "-1" : null)">
+                        <a href="/photos#@Path.GetFileNameWithoutExtension(ph.File)" tabindex="@(hidden ? "-1" : null)" data-title="@ph.Title" data-caption="@ph.Caption">
                             <img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" />
                         </a>
                     </li>
@@ -83,6 +83,7 @@
             }
         </ul>
     </div>
+    <Lightbox />
 </section>
 
 <section id="about">

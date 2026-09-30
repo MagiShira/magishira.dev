@@ -1,0 +1,22 @@
+@* search and tag filter icons for a list page, site.js wires up every .finder to filter the elements matched by Items
+   on their data-tags and data-text attributes and show the page's .empty message when nothing is left *@
+<div class="finder" data-items="@Items" hidden>
+    <div class="searchbox">
+        <button class="iconbtn" type="button" data-act="search" aria-label="Search @Noun" aria-expanded="false" aria-controls="@Noun-q"><Icon Name="search" /></button>
+        <input type="search" id="@Noun-q" placeholder="Search @Noun" aria-label="Search @Noun" autocomplete="off" tabindex="-1" />
+    </div>
+    <button class="iconbtn" type="button" data-act="filter" aria-label="Filter by tag" popovertarget="@Noun-chips"><Icon Name="filter_list" /><span class="dot" hidden></span></button>
+    <div class="chips" id="@Noun-chips" role="group" aria-label="Filter by tag" popover>
+        <button type="button" class="chip" data-tag="" aria-pressed="true">All</button>
+        @foreach (var t in Tags) { <button type="button" class="chip" data-tag="@t.ToLowerInvariant()" aria-pressed="false">@t</button> }
+        <div class="clearfoot"><button type="button" class="clearf" data-act="clear" hidden><Icon Name="close" /> Clear filters</button></div>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Noun { get; set; } = "";   // eg "photos", used in labels and ids
+    [Parameter, EditorRequired] public string Items { get; set; } = "";  // CSS selector for the filterable elements
+    [Parameter, EditorRequired] public IEnumerable<string> Tags { get; set; } = [];
+
+    public static string TagAttr(IEnumerable<string> tags) => string.Join(" ", tags).ToLowerInvariant();
+}

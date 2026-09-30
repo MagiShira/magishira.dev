@@ -8,6 +8,8 @@ public static class PhotoList
     // the home strip skips graduation portraits, they only live in the full gallery
     public static IEnumerable<Photo> Strip => Items.Where(p => !p.Tags.Contains("Graduation"));
 
+    public static IEnumerable<string> AllTags => Items.SelectMany(p => p.Tags).Distinct().Order();
+
     public static readonly Photo[] Items =
     [
         new("photos/frog-balloon.webp", 1600, 1067, "Frog", "Great Reno Balloon Race, September 2024.", "A frog-shaped hot air balloon seen from below against a blue sky", "Balloons", "Sky"),

@@ -2,16 +2,25 @@
 
 <PageMeta Title="Photos — magishira.dev" Description="Photos by Shira: graduation portraits, Lake Tahoe and the Nevada backcountry, hot air balloons over Reno, a cleanroom on the quad, a hackathon, and whatever else is around." />
 
-<h1>Photos</h1>
+<div class="pagehead">
+    <h1>Photos</h1>
+    <Finder Noun="photos" Items=".gallery figure" Tags="PhotoList.AllTags" />
+</div>
 
 <div class="gallery">
     @foreach (var ph in PhotoList.Items)
     {
-        <figure id="@Path.GetFileNameWithoutExtension(ph.File)">
+        <figure id="@Path.GetFileNameWithoutExtension(ph.File)" data-tags="@TagAttr(ph)" data-text="@TextAttr(ph)">
             <a href="@Assets[ph.File]" data-title="@ph.Title" data-caption="@ph.Caption"><img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" /></a>
             <figcaption>@if (ph.Title.Length > 0) { <strong>@ph.Title</strong> } @ph.Caption</figcaption>
         </figure>
     }
 </div>
+<p class="mute empty" hidden>No photos match. <button type="button" class="clearf" data-act="clear"><Icon Name="close" /> Clear filters</button></p>
 
 <Lightbox />
+
+@code {
+    static string TagAttr(PhotoList.Photo p) => Finder.TagAttr(p.Tags);
+    static string TextAttr(PhotoList.Photo p) => $"{p.Title} {p.Caption} {p.Alt} {TagAttr(p)}".ToLowerInvariant();
+}

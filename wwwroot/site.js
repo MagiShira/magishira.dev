@@ -48,6 +48,60 @@ if (strip) {
     });
 }
 
+// search and tag filter (Finder.razor) on /photos, two icons beside the title, search grows into a field and filter opens a popover of chips
+// hidden without JS so the page just shows everything, state lives in ?q= and ?tag=
+const finder = document.querySelector('.finder');
+if (finder) {
+    finder.hidden = false;
+    const box = finder.querySelector('.searchbox'), q = box.querySelector('input');
+    const sBtn = finder.querySelector('[data-act="search"]'), fBtn = finder.querySelector('[data-act="filter"]'), dot = fBtn.querySelector('.dot');
+    const tray = document.getElementById(fBtn.getAttribute('popovertarget')), chips = [...tray.querySelectorAll('.chip')];
+    const figs = [...document.querySelectorAll(finder.dataset.items)], empty = document.querySelector('.empty');
+    const params = new URLSearchParams(location.search);
+    let tag = params.get('tag') || '';
+    q.value = params.get('q') || '';
+    const openSearch = open => { box.classList.toggle('open', open); sBtn.setAttribute('aria-expanded', open); q.tabIndex = open ? 0 : -1; if (tray.matches(':popover-open')) setTimeout(place, 260); };
+    const place = () => { // keep the popover under the filter icon, right-aligned, inside the viewport
+        const r = fBtn.getBoundingClientRect(), w = tray.offsetWidth;
+        const left = Math.max(16, Math.min(r.right - w, innerWidth - w - 16));
+        tray.style.left = left + 'px';
+        tray.style.top = r.bottom + 10 + 'px';
+        tray.style.setProperty('--arrow-x', (r.left + r.width / 2 - left) + 'px'); // arrow points at the icon's centre
+    };
+    tray.addEventListener('beforetoggle', e => { if (e.newState === 'open') requestAnimationFrame(place); });
+    tray.addEventListener('toggle', e => { fBtn.classList.toggle('on', e.newState === 'open'); if (e.newState === 'open') place(); });
+    addEventListener('resize', () => tray.matches(':popover-open') && place());
+    addEventListener('scroll', () => tray.matches(':popover-open') && place(), { passive: true });
+    const apply = () => {
+        const words = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+        let shown = 0;
+        for (const f of figs) {
+            const ok = (!tag || f.dataset.tags.split(' ').includes(tag)) && words.every(w => f.dataset.text.includes(w));
+            f.hidden = !ok; shown += ok;
+        }
+        empty.hidden = shown > 0;
+        dot.hidden = !tag;
+        tray.querySelector('.clearf').hidden = !tag && !q.value;
+        for (const c of chips) c.setAttribute('aria-pressed', c.dataset.tag === tag);
+        const u = new URL(location); u.search = '';
+        if (q.value) u.searchParams.set('q', q.value);
+        if (tag) u.searchParams.set('tag', tag);
+        history.replaceState(null, '', u);
+    };
+    sBtn.addEventListener('click', () => {
+        if (!box.classList.contains('open')) { openSearch(true); q.focus(); }
+        else if (!q.value) openSearch(false);
+        else q.focus();
+    });
+    q.addEventListener('input', apply);
+    q.addEventListener('keydown', e => { if (e.key === 'Escape') { q.value = ''; apply(); openSearch(false); sBtn.focus(); } });
+    q.addEventListener('blur', () => setTimeout(() => { if (!q.value && document.activeElement !== q) openSearch(false); }, 200)); // let a tap on a neighbouring icon land before the layout shifts
+    for (const c of chips) c.addEventListener('click', () => { tag = c.dataset.tag; apply(); });
+    for (const c of document.querySelectorAll('[data-act="clear"]')) c.addEventListener('click', () => { tag = ''; q.value = ''; apply(); openSearch(false); });
+    openSearch(!!q.value);
+    apply();
+}
+
 // lightbox for the home photo strip and the /photos gallery, without JS the links still go somewhere useful
 const box = document.querySelector('.lightbox');
 if (box) {

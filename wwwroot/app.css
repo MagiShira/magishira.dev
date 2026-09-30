@@ -208,6 +208,50 @@ section > p, .timeline > li > div { max-width: 42rem; }
 main > .grid { margin-bottom: 3rem; }
 main > h1 { margin-bottom: 1.5rem; }
 .gallery figure { margin: 0 0 1.25rem; break-inside: avoid; }
+.gallery figure[hidden] { display: none; }
+.pagehead { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.pagehead h1 { margin: 0; }
+.finder { display: flex; align-items: center; gap: .25rem; }
+.finder[hidden] { display: none; }
+.searchbox { display: flex; align-items: center; border: 1px solid transparent; border-radius: .7rem; transition: border-color .2s ease, background-color .2s ease; }
+.searchbox.open { border-color: var(--line); background: var(--card); }
+.searchbox.open:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 75%); }
+.searchbox.open .iconbtn:hover { background: none; }
+.searchbox input { width: 0; padding: 0; border: 0; background: none; color: var(--fg); font: inherit; opacity: 0; outline: none; transition: width .25s ease, padding .25s ease, opacity .2s ease; }
+.searchbox.open input { width: min(14rem, 46vw); padding-right: .75rem; opacity: 1; }
+.searchbox input::-webkit-search-cancel-button { cursor: pointer; }
+.iconbtn[aria-expanded="true"] { color: var(--fg); }
+.iconbtn { position: relative; }
+.dot { position: absolute; top: .4rem; right: .4rem; width: .45rem; height: .45rem; border-radius: 50%; background: var(--accent); }
+.dot[hidden] { display: none; }
+.chips[popover] { --arrow-x: calc(100% - 1.1rem); position: fixed; inset: auto; margin: 0; padding: .75rem; overflow: visible; max-width: min(20rem, calc(100vw - 2rem)); border: 1px solid var(--line); border-radius: .9rem; background: var(--card); color: var(--fg); box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .3);
+    transform-origin: var(--arrow-x) top; opacity: 0; transform: translateY(-6px) scale(.96);
+    transition: opacity .16s ease, transform .18s cubic-bezier(.2, .9, .3, 1.2), display .18s allow-discrete, overlay .18s allow-discrete; }
+.chips[popover]::before { content: ""; position: absolute; top: -6px; left: calc(var(--arrow-x) - 6px); width: 11px; height: 11px; background: var(--card); border-left: 1px solid var(--line); border-top: 1px solid var(--line); border-top-left-radius: 3px; transform: rotate(45deg); }
+.chips:popover-open { display: flex; flex-wrap: wrap; gap: .4rem; opacity: 1; transform: none; }
+
+.clearf { display: inline-flex; align-items: center; gap: .3rem; padding: .3rem .7rem .3rem .5rem; border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--fg); font: inherit; font-size: .9rem; cursor: pointer; }
+.clearf .mi { width: 1rem; height: 1rem; }
+.clearf:hover { border-color: var(--mute); background: var(--line); }
+.chips .clearfoot { flex-basis: 100%; display: flex; justify-content: flex-end; margin-top: .35rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.chips .clearfoot:has(.clearf[hidden]) { display: none; }
+.empty { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; margin: 0 0 3rem; }
+.empty[hidden] { display: none; }
+.gallery:not(:has(figure:not([hidden]))) { display: none; } /* everything filtered out, let the empty message take the space */
+.clearf[hidden] { display: none; }
+@starting-style { .chips:popover-open { opacity: 0; transform: translateY(-6px) scale(.96); } }
+@media (prefers-reduced-motion: reduce) { .chips[popover] { transition: none; transform: none; } }
+.iconbtn.on { color: var(--fg); background: var(--line); }
+@media (max-width: 40rem) {
+    .pagehead { flex-wrap: wrap; }
+    .pagehead:has(.searchbox.open) .finder { flex: 1 1 100%; }
+    .pagehead:has(.searchbox.open) .searchbox { flex: 1; }
+    .searchbox.open input { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .searchbox input, .searchbox { transition: none; } }
+.chip { padding: .3rem .8rem; border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--mute); font: inherit; font-size: .9rem; cursor: pointer; }
+.chip:hover { color: var(--fg); border-color: var(--mute); }
+.chip[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
 .lightbox { border: 0; border-radius: 1rem; padding: 0; background: var(--card); color: var(--fg); max-width: min(92vw, 70rem); max-height: 92vh; }
 .lightbox::backdrop { background: rgba(0, 0, 0, .6); backdrop-filter: blur(4px); }
 .lightbox img { display: block; max-width: 100%; max-height: 78vh; object-fit: contain; }

@@ -8,7 +8,7 @@
 </div>
 
 <div class="gallery">
-    @foreach (var ph in PhotoList.Items)
+    @foreach (var ph in Shuffled)
     {
         <figure id="@Path.GetFileNameWithoutExtension(ph.File)" data-tags="@TagAttr(ph)" data-text="@TextAttr(ph)">
             <a href="@Assets[ph.File]" data-title="@ph.Title" data-caption="@ph.Caption"><img src="@Assets[ph.File]" alt="@ph.Alt" loading="lazy" width="@ph.Width" height="@ph.Height" /></a>
@@ -21,6 +21,9 @@
 <Lightbox />
 
 @code {
+    // a new order on every request, the HTML is served no-cache so each reload reshuffles
+    readonly PhotoList.Photo[] Shuffled = Shuffle(PhotoList.Items);
+    static PhotoList.Photo[] Shuffle(PhotoList.Photo[] items) { var a = items.ToArray(); Random.Shared.Shuffle(a); return a; }
     static string TagAttr(PhotoList.Photo p) => Finder.TagAttr(p.Tags);
     static string TextAttr(PhotoList.Photo p) => $"{p.Title} {p.Caption} {p.Alt} {TagAttr(p)}".ToLowerInvariant();
 }

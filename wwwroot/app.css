@@ -262,6 +262,7 @@ main > h1 { margin-bottom: 1.5rem; }
 .lightbox img { display: block; max-width: 100%; max-height: 78vh; object-fit: contain; }
 .lightbox p { margin: 0; padding: .9rem 1.25rem; }
 .lightbox .close { position: absolute; top: .5rem; right: .5rem; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 50%; background: rgba(0, 0, 0, .5); color: #fff; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; } }
 
 /* ---- scroll-driven animations, a static page where unsupported ---- */
 @supports (animation-timeline: view()) {

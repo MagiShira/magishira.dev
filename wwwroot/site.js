@@ -11,7 +11,8 @@ if (menuBtn) {
 document.querySelector('.theme')?.addEventListener('click', () => {
     const cur = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     const next = cur === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = next;
+    const apply = () => { document.documentElement.dataset.theme = next; };
+    document.startViewTransition ? document.startViewTransition(apply) : apply(); // crossfade where supported
     try { localStorage.setItem('theme', next); } catch { }
 });
 

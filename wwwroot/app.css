@@ -99,6 +99,11 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; min-height: 26rem; }
 @media (max-width: 48rem) { .hero { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.intro > * { animation: rise .5s ease-out both; }
+.intro > :nth-child(2) { animation-delay: 60ms; }
+.intro > :nth-child(3) { animation-delay: 120ms; }
+.intro > :nth-child(4) { animation-delay: 180ms; }
+@keyframes rise { from { opacity: 0; transform: translateY(.5rem); } }
 .btns { display: flex; gap: .75rem; margin-top: 1.5rem; flex-wrap: wrap; }
 .btn { display: inline-block; padding: .6rem 1rem; border-radius: .6rem; text-decoration: none; font-weight: 500; border: 1px solid var(--line); }
 .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
@@ -189,7 +194,7 @@ section > p, .timeline > li > div { max-width: 42rem; }
 .led { position: absolute; right: calc(26 * var(--u)); bottom: calc(16 * var(--u)); width: calc(7 * var(--u)); height: calc(7 * var(--u)); border-radius: 50%; background: #4ade80; box-shadow: 0 0 calc(6 * var(--u)) #4ade80; }
 @keyframes blink { 50% { opacity: 0; } }
 @keyframes flicker { 0%, 92%, 96%, 100% { opacity: 1; } 94% { opacity: .85; } }
-@media (prefers-reduced-motion: reduce) { .rig, .screen, .cur, .rig.smack, .smack .screen, .smack .screen > :is(pre, .haj), .smack .screen::before, .haj img { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .rig, .screen, .cur, .rig.smack, .smack .screen, .smack .screen > :is(pre, .haj), .smack .screen::before, .haj img, .intro > * { animation: none; } }
 
 /* ---- photos, a native scroll-snap carousel and the gallery grid ---- */
 .marquee { margin: 0 calc(50% - 50vw); overflow-x: auto; scrollbar-width: none; }
@@ -257,3 +262,21 @@ main > h1 { margin-bottom: 1.5rem; }
 .lightbox img { display: block; max-width: 100%; max-height: 78vh; object-fit: contain; }
 .lightbox p { margin: 0; padding: .9rem 1.25rem; }
 .lightbox .close { position: absolute; top: .5rem; right: .5rem; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 50%; background: rgba(0, 0, 0, .5); color: #fff; cursor: pointer; }
+
+/* ---- scroll-driven animations, a static page where unsupported ---- */
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .intro { animation: hero-out linear both; animation-timeline: scroll(root); animation-range: 0 60vh; }
+        @media (min-width: 48rem) { .crt { animation: crt-out linear both; animation-timeline: scroll(root); animation-range: 0 80vh; } }
+        .grid > .card, .timeline > li, .carousel > li, .skills > div, .plain > li, #about > p { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+        .grid > .card:nth-child(2), .timeline > li:nth-child(2), .carousel > li:nth-child(2), .skills > div:nth-child(2) { animation-range: entry 10% entry 55%; }
+        .grid > .card:nth-child(3), .timeline > li:nth-child(3), .carousel > li:nth-child(3), .skills > div:nth-child(3) { animation-range: entry 20% entry 65%; }
+        .grid > .card:nth-child(4), .timeline > li:nth-child(4), .skills > div:nth-child(4) { animation-range: entry 30% entry 75%; }
+        .grid > .card:nth-child(5), .timeline > li:nth-child(5) { animation-range: entry 40% entry 85%; }
+
+    }
+}
+
+@keyframes hero-out { to { opacity: 0; translate: 0 -3rem; } }
+@keyframes crt-out { to { opacity: 0; translate: 0 5rem; scale: .8; } }
+@keyframes reveal { from { opacity: 0; translate: 0 2rem; } }

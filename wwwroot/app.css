@@ -281,3 +281,15 @@ main > h1 { margin-bottom: 1.5rem; }
 @keyframes hero-out { to { opacity: 0; translate: 0 -3rem; } }
 @keyframes crt-out { to { opacity: 0; translate: 0 5rem; scale: .8; } }
 @keyframes reveal { from { opacity: 0; translate: 0 2rem; } }
+
+/* ---- print, the home page doubles as a résumé ---- */
+@media print {
+    header, footer, .skip, .crt, #photos, .btns, .links { display: none; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .band { background: none; margin: 1.5rem 0; padding: 0; }
+    section > h2:first-child { margin-top: 1.5rem; font-size: 1.5rem; }
+    .hero { min-height: 0; display: block; }
+    a { text-decoration: none; }
+    #contact a[href^="http"]::after, #contact a[href^="mailto"]::after { content: " (" attr(href) ")"; font-size: .85em; }
+    .intro > *, .grid > .card, .timeline > li, .carousel > li, .skills > div, .plain > li, #about > p { animation: none; opacity: 1; translate: none; }
+}

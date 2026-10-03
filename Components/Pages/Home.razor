@@ -5,7 +5,7 @@
 <section class="hero">
     <div class="intro">
         <p class="eyebrow">IT professional · Reno, Nevada</p>
-        <h1>My little corner of the internet.</h1>
+        <h1>@Headline</h1>
         <p class="lead">I'm Shira. I lead the endpoint-management student team at the University of Nevada, Reno, and I'm president of Nevada eSports, where I also run the technology.</p>
         <div class="btns">
             <a class="btn primary" href="#projects">See projects</a>
@@ -131,3 +131,15 @@
 <script type="application/ld+json">
 {"@@context":"https://schema.org","@@type":"Person","name":"Elane Faisal-Sage","alternateName":"Shira","jobTitle":"IT Professional","url":"https://magishira.dev","email":"mailto:shira@magishira.dev","sameAs":["https://github.com/MagiShira","https://linkedin.com/in/elane-faisal-sage"],"worksFor":{"@@type":"Organization","name":"University of Nevada, Reno"},"address":{"@@type":"PostalAddress","addressLocality":"Reno","addressRegion":"NV"}}
 </script>
+
+@code {
+    // one headline is picked per request
+    static readonly string[] Headlines =
+    [
+        "My little corner of the internet.",
+        "I write software and keep the systems under it running.",
+        "Mostly uptime. Some code.",
+        "Hello there.",
+    ];
+    string Headline => Headlines[Random.Shared.Next(Headlines.Length)];
+}

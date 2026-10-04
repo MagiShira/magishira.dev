@@ -1,0 +1,18 @@
+<div class="card">
+    <h3>
+        @if (Project.Live is not null) { <a href="@Project.Live">@Project.Name</a> } else { @Project.Name }
+    </h3>
+    <p>@Blurb</p>
+    @if (Project.Source is not null)
+    {
+        <p class="src"><a href="@Project.Source"><Icon Name="source_branch" /> Source</a></p>
+    }
+    <div class="tags">@foreach (var t in Project.Tags) { <span>@t</span> }</div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public ProjectList.Project Project { get; set; } = default!;
+    [Parameter] public bool Short { get; set; }
+
+    string Blurb => Short && Project.Blurb.IndexOf(". ", StringComparison.Ordinal) is >= 0 and var i ? Project.Blurb[..(i + 1)] : Project.Blurb; 
+}

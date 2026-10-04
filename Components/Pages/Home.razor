@@ -40,20 +40,7 @@
 <section id="projects">
     <div class="sechead"><h2>Projects</h2><a class="btn sm" href="/projects">All projects</a></div>
     <div class="grid wide">
-        @foreach (var p in ProjectList.Items.Where(p => p.Featured))
-        {
-            <div class="card">
-                <h3>
-                    @if (p.Live is not null) { <a href="@p.Live">@p.Name</a> } else { @p.Name }
-                </h3>
-                <p>@p.Blurb</p>
-                @if (p.Source is not null)
-                {
-                    <p class="src"><a href="@p.Source"><Icon Name="source_branch" /> Source</a></p>
-                }
-                <div class="tags">@foreach (var t in p.Tags) { <span>@t</span> }</div>
-            </div>
-        }
+        @foreach (var p in ProjectList.Items.Where(p => p.Featured)) { <ProjectCard Project="p" Short /> }
     </div>
 </section>
 

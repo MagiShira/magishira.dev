@@ -1,0 +1,14 @@
+@* date, title and summary rows, used by /blog and the home page's Writing section *@
+<ol class="postlist">
+    @foreach (var p in Posts)
+    {
+        <li>
+            <time datetime="@p.Date.ToString("yyyy-MM-dd")">@p.Date.ToString("MMM d, yyyy")</time>
+            <div><a href="/blog/@p.Slug">@p.Title</a>@if (p.Draft) { <span class="mute"> · Draft</span> }<p class="mute">@p.Summary</p></div>
+        </li>
+    }
+</ol>
+
+@code {
+    [Parameter, EditorRequired] public IEnumerable<PostList.Post> Posts { get; set; } = [];
+}

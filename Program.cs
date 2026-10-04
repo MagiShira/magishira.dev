@@ -6,6 +6,7 @@ builder.Services.AddRazorComponents();
 builder.Services.AddResponseCompression(o => o.EnableForHttps = true); // static assets are pre-compressed, this covers the HTML
 
 var app = builder.Build();
+PostList.ShowDrafts = app.Environment.IsDevelopment();
 
 if (!app.Environment.IsDevelopment())
 {

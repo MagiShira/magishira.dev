@@ -293,3 +293,26 @@ main > h1 { margin-bottom: 1.5rem; }
     #contact a[href^="http"]::after, #contact a[href^="mailto"]::after { content: " (" attr(href) ")"; font-size: .85em; }
     .intro > *, .grid > .card, .timeline > li, .carousel > li, .skills > div, .plain > li, #about > p { animation: none; opacity: 1; translate: none; }
 }
+
+/* ---- blog ---- */
+.postlist { list-style: none; padding: 0; margin: 0 0 3rem; display: grid; gap: 1.25rem; }
+.postlist li { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.postlist time { color: var(--mute); font-variant-numeric: tabular-nums; }
+.postlist a { font-weight: 600; text-decoration: none; }
+.postlist a:hover { text-decoration: underline; }
+.postlist p { margin: .25rem 0 0; }
+@media (max-width: 32rem) { .postlist li { grid-template-columns: 1fr; gap: .2rem; } }
+.post { max-width: 42rem; margin: 0 auto 4rem; }
+.posthead h1 { margin-bottom: 2rem; }
+.postfoot { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.prose { font-size: 1.075rem; line-height: 1.75; }
+.prose h2 { font-size: 1.5rem; margin: 2.5rem 0 .75rem; }
+.prose h3 { font-size: 1.2rem; margin: 2rem 0 .5rem; }
+.prose code { font: .9em ui-monospace, Menlo, Consolas, monospace; padding: .1em .35em; border-radius: .3rem; background: var(--line); }
+.prose pre { overflow-x: auto; padding: 1rem 1.25rem; border-radius: .75rem; background: var(--card); border: 1px solid var(--line); line-height: 1.5; }
+.prose pre code { padding: 0; background: none; font-size: .875rem; }
+.prose blockquote { margin: 1.5rem 0; padding-left: 1.25rem; border-left: 3px solid var(--accent); color: var(--mute); }
+.prose figure { margin: 2rem 0; }
+.prose img { display: block; max-width: 100%; max-height: 75vh; width: auto; height: auto; margin-inline: auto; border-radius: .75rem; }
+.prose figcaption { text-align: center; }
+.prose figcaption { margin-top: .5rem; font-size: .9rem; color: var(--mute); }

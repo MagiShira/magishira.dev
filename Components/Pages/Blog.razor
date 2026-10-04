@@ -1,0 +1,14 @@
+@page "/blog"
+
+<PageMeta Title="Blog — magishira.dev" Description="Writing by Shira on endpoint management, homelabs, and whatever else is worth writing down." />
+
+<h1>Blog</h1>
+
+@if (PostList.Visible.Any())
+{
+    <PostRows Posts="PostList.Visible" />
+}
+else
+{
+    <p class="mute">Nothing here yet.</p>
+}

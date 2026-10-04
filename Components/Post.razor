@@ -1,0 +1,27 @@
+@* the shell every blog post sits in (title, date, body, back link), unknown or unpublished slugs 404 *@
+@inject NavigationManager Nav
+
+@if (post is not null)
+{
+    <PageMeta Title="@($"{post.Title} — magishira.dev")" Description="@post.Summary" />
+    <article class="post">
+        <div class="posthead">
+            <p class="eyebrow"><time datetime="@post.Date.ToString("yyyy-MM-dd")">@post.Date.ToString("MMMM d, yyyy")</time>@if (post.Draft) { <span> · Draft</span> }</p>
+            <h1>@post.Title</h1>
+        </div>
+        <div class="prose">@ChildContent</div>
+        <p class="postfoot"><a href="/blog">All posts</a></p>
+    </article>
+}
+
+@code {
+    [Parameter, EditorRequired] public string Slug { get; set; } = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    PostList.Post? post;
+
+    protected override void OnInitialized()
+    {
+        post = PostList.Find(Slug);
+        if (post is null) Nav.NotFound();
+    }
+}

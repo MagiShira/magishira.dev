@@ -123,6 +123,14 @@
     <Roles Compact />
 </section>
 
+@if (PostList.Visible.Any())
+{
+    <section id="writing">
+        <div class="sechead"><h2>Writing</h2><a class="btn sm" href="/blog">All posts</a></div>
+        <PostRows Posts="PostList.Visible.Take(3)" />
+    </section>
+}
+
 <section id="contact" class="band">
     <h2>Contact</h2>
     <p class="lead">Email is best: <a href="mailto:shira@magishira.dev">shira@magishira.dev</a>. Also on <a href="https://linkedin.com/in/elane-faisal-sage">LinkedIn</a>, <a href="https://github.com/MagiShira">GitHub</a>, and <a href="https://discord.com/users/219501317532549120">Discord</a>. Résumé available on request.</p>

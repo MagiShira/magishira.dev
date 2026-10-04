@@ -1,0 +1,26 @@
+@page "/blog/hello-world"
+
+<Post Slug="hello-world">
+    <p>This is a draft that shows every building block a post can use. It only renders in Development, so it's safe to leave in the repo. Copy this file to start a new post.</p>
+
+    <h2>Writing a post</h2>
+    <ol>
+        <li>Add a row to <code>PostList.cs</code> with a slug, title, date, and one-line summary.</li>
+        <li>Copy this file to <code>Components/Posts</code>, change the <code>@@page</code> route and the <code>Slug</code>.</li>
+        <li>Write the body as plain HTML inside <code>&lt;Post&gt;</code>. Set <code>Draft: false</code> when it's ready.</li>
+    </ol>
+
+    <h2>Things a post can contain</h2>
+    <p>Paragraphs with <a href="/">links</a>, <strong>bold</strong>, <em>emphasis</em>, and <code>inline code</code>.</p>
+    <blockquote><p>A pull quote, for the line worth repeating.</p></blockquote>
+    <pre><code>Get-CMDeploymentStatus -Name "Office 365" |
+    Where-Object { $_.NumberErrors -gt 0 }</code></pre>
+    <figure>
+        <img src="@Assets["photos/sand-harbor.webp"]" alt="Clear water and granite boulders at Sand Harbor" width="768" height="1024" loading="lazy" />
+        <figcaption>Figures take an optional caption.</figcaption>
+    </figure>
+    <ul>
+        <li>Lists, ordered and not.</li>
+        <li>Anything else in plain HTML or Razor components.</li>
+    </ul>
+</Post>

@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using Magishira.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,18 @@ app.Use(async (ctx, next) => // HTML has to revalidate, fingerprinted assets kee
 app.UseAntiforgery();
 
 app.MapStaticAssets();
+app.MapGet("/blog/feed.xml", (HttpContext ctx) => // RSS 2.0, published posts only
+{
+    var site = $"{ctx.Request.Scheme}://{ctx.Request.Host}";
+    XElement El(string n, object v) => new(n, v);
+    var rss = new XElement("rss", new XAttribute("version", "2.0"),
+        new XElement("channel",
+            El("title", "magishira.dev"), El("link", site + "/blog"), El("description", "Writing by Shira."),
+            PostList.Published.Select(p => new XElement("item",
+                El("title", p.Title), El("link", $"{site}/blog/{p.Slug}"), El("guid", $"{site}/blog/{p.Slug}"),
+                El("pubDate", p.Date.ToDateTime(new TimeOnly(12, 0)).ToString("R")), El("description", p.Summary)))));
+    return Results.Text(rss.ToString(), "application/rss+xml");
+});
 app.MapRazorComponents<App>();
 
 app.Run();

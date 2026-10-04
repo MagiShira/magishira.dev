@@ -14,6 +14,7 @@ public static class PostList
     public static bool ShowDrafts { get; set; } // set from Program.cs, true in Development only
 
     public static IEnumerable<Post> Visible => Items.Where(p => ShowDrafts || !p.Draft).OrderByDescending(p => p.Date);
+    public static IEnumerable<Post> Published => Items.Where(p => !p.Draft).OrderByDescending(p => p.Date);
 
     public static Post? Find(string slug) => Visible.FirstOrDefault(p => p.Slug == slug);
 }

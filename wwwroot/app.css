@@ -218,6 +218,8 @@ main > h1 { margin-bottom: 1.5rem; }
 .pagehead h1 { margin: 0; }
 .finder { display: flex; align-items: center; gap: .25rem; }
 .headtools { display: flex; align-items: center; gap: .25rem; }
+.postlist li[hidden] { display: none; }
+.postlist .tags { margin-top: .5rem; }
 .finder[hidden] { display: none; }
 .searchbox { display: flex; align-items: center; border: 1px solid transparent; border-radius: .7rem; transition: border-color .2s ease, background-color .2s ease; }
 .searchbox.open { border-color: var(--line); background: var(--card); }
@@ -243,14 +245,14 @@ main > h1 { margin-bottom: 1.5rem; }
 .chips .clearfoot:has(.clearf[hidden]) { display: none; }
 .empty { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; margin: 0 0 3rem; }
 .empty[hidden] { display: none; }
-.gallery:not(:has(figure:not([hidden]))) { display: none; } /* everything filtered out, let the empty message take the space */
+.postlist:not(:has(li:not([hidden]))), .gallery:not(:has(figure:not([hidden]))) { display: none; } /* everything filtered out, let the empty message take the space */
 .clearf[hidden] { display: none; }
 @starting-style { .chips:popover-open { opacity: 0; transform: translateY(-6px) scale(.96); } }
 @media (prefers-reduced-motion: reduce) { .chips[popover] { transition: none; transform: none; } }
 .iconbtn.on { color: var(--fg); background: var(--line); }
 @media (max-width: 40rem) {
     .pagehead { flex-wrap: wrap; }
-    .pagehead:has(.searchbox.open) .finder { flex: 1 1 100%; }
+    .pagehead:has(.searchbox.open) .headtools, .pagehead:has(.searchbox.open) .finder { flex: 1 1 100%; }
     .pagehead:has(.searchbox.open) .searchbox { flex: 1; }
     .searchbox.open input { width: 100%; }
 }

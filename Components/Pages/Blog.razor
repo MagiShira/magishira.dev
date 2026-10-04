@@ -5,6 +5,7 @@
 <div class="pagehead">
     <h1>Blog</h1>
     <div class="headtools">
+        @if (PostList.Visible.Any()) { <Finder Noun="posts" Items=".postlist li" Tags="PostList.AllTags" /> }
         <a class="iconbtn" href="/blog/feed.xml" title="RSS feed" aria-label="RSS feed"><Icon Name="rss" /></a>
     </div>
 </div>
@@ -12,6 +13,7 @@
 @if (PostList.Visible.Any())
 {
     <PostRows Posts="PostList.Visible" />
+    <p class="mute empty" hidden>No posts match. <button type="button" class="clearf" data-act="clear"><Icon Name="close" /> Clear filters</button></p>
 }
 else
 {

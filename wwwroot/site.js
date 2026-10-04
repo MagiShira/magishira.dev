@@ -49,7 +49,7 @@ if (strip) {
     });
 }
 
-// search and tag filter (Finder.razor) on /photos, two icons beside the title, search grows into a field and filter opens a popover of chips
+// search and tag filter (Finder.razor) on /photos and /blog, two icons beside the title, search grows into a field and filter opens a popover of chips
 // hidden without JS so the page just shows everything, state lives in ?q= and ?tag=
 const finder = document.querySelector('.finder');
 if (finder) {

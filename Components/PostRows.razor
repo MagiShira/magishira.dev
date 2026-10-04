@@ -2,9 +2,9 @@
 <ol class="postlist">
     @foreach (var p in Posts)
     {
-        <li>
+        <li data-tags="@Finder.TagAttr(p.Tags)" data-text="@($"{p.Title} {p.Summary} {Finder.TagAttr(p.Tags)}".ToLowerInvariant())">
             <time datetime="@p.Date.ToString("yyyy-MM-dd")">@p.Date.ToString("MMM d, yyyy")</time>
-            <div><a href="/blog/@p.Slug">@p.Title</a>@if (p.Draft) { <span class="mute"> · Draft</span> }<p class="mute">@p.Summary</p></div>
+            <div><a href="/blog/@p.Slug">@p.Title</a>@if (p.Draft) { <span class="mute"> · Draft</span> }<p class="mute">@p.Summary</p>@if (p.Tags.Length > 0) { <div class="tags">@foreach (var t in p.Tags) { <span>@t</span> }</div> }</div>
         </li>
     }
 </ol>

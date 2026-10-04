@@ -14,7 +14,7 @@
 </div>
 
 @code {
-    [Parameter, EditorRequired] public string Noun { get; set; } = "";   // eg "photos", used in labels and ids
+    [Parameter, EditorRequired] public string Noun { get; set; } = "";   // eg "photos" or "posts", used in labels and ids
     [Parameter, EditorRequired] public string Items { get; set; } = "";  // CSS selector for the filterable elements
     [Parameter, EditorRequired] public IEnumerable<string> Tags { get; set; } = [];
 

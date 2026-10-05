@@ -17,6 +17,6 @@ public static class ProjectList
         new("UNR 3D Printing Club Wiki", "The club's reference for printers, filaments, slicing, and safety. MediaWiki, with a forked extension for approving member accounts.", null, "https://wiki.unr3dp.org", false, "MediaWiki"),
         new("ConMap", "Offline-first map for SNAFU Con 2026: rooms, schedules, and the Merchants' Room booth by booth. Works with no signal.", null, "https://map.elane.dev", true, "C#", "Blazor", "PWA"),
         new("PackWatch", "Security and moderation tooling for the Nevada eSports Discord community.", null, null, false, "SQL", "RegEx", "Internal"),
-        new("magishira.dev", "This site. Static-rendered Blazor, one stylesheet, no client runtime. The CRT is CSS. Smack it.", null, null, false, "C#", "Blazor", "CSS"),
+        new("magishira.dev", "This site. Static-rendered Blazor, one stylesheet, no client runtime. The CRT is CSS. Smack it.", "https://github.com/MagiShira/magishira.dev", null, false, "C#", "Blazor", "CSS"),
     ];
 }

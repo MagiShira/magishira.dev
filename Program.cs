@@ -23,6 +23,7 @@ app.Use(async (ctx, next) => // HTML has to revalidate, fingerprinted assets kee
 app.UseAntiforgery();
 
 app.MapStaticAssets();
+app.MapGet("/.well-known/security.txt", () => Results.Text("Contact: mailto:shira@magishira.dev\nExpires: 2027-10-04T00:00:00.000Z\nPreferred-Languages: en\nCanonical: https://magishira.dev/.well-known/security.txt\n", "text/plain")); // dotfolders aren't served from wwwroot
 app.MapGet("/blog/feed.xml", (HttpContext ctx) => // RSS 2.0, published posts only
 {
     var site = $"{ctx.Request.Scheme}://{ctx.Request.Host}";

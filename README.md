@@ -27,6 +27,27 @@ dotnet publish -c Release -o out
 ASPNETCORE_ENVIRONMENT=Production dotnet out/Magishira.dll
 ```
 
+## Deploy
+
+The site runs on a NixOS VM. A Cloudflare tunnel carries magishira.dev, elane.dev, elane.gay and their `www.` names to it, so nothing on the box is open to the internet. The app 301s the elane domains and every `www.` name to https://magishira.dev. The VM's config lives in `deploy/`.
+
+`deploy/deploy.sh` and the commands below SSH to `$DEPLOY_HOST`. Set it in `deploy/.env`, which git ignores, or pass the host as the script's first argument.
+
+To ship the committed site:
+
+```
+deploy/deploy.sh
+```
+
+It publishes `HEAD` in a temp directory, copies it to `/var/lib/magishira/app`, and restarts the service.
+
+To change the VM itself, edit `deploy/configuration.nix`, then:
+
+```
+. deploy/.env
+tar --no-xattrs -C deploy -c flake.nix flake.lock configuration.nix | ssh "$DEPLOY_HOST" 'mkdir -p /root/magishira && tar -x -C /root/magishira && nixos-rebuild switch --flake /root/magishira#magishira'
+```
+
 ## Where things live
 
 | Path | What it is |
@@ -40,7 +61,8 @@ ASPNETCORE_ENVIRONMENT=Production dotnet out/Magishira.dll
 | `Components/Crt.razor` | The monitor |
 | `wwwroot/app.css` | All the styles |
 | `wwwroot/site.js` | All the script |
-| `Program.cs` | Pipeline, RSS feed, `security.txt` |
+| `Program.cs` | Pipeline, domain redirects, RSS feed, `security.txt` |
+| `deploy/` | NixOS config for the VM, and the deploy script |
 
 ## Adding content
 

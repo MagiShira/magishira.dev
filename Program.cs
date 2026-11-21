@@ -13,6 +13,13 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
 }
+app.Use(async (ctx, next) => // www. and the elane domains 301 to magishira.dev, path kept
+{
+    if (ctx.Request.Host.Host.ToLowerInvariant() is "www.magishira.dev" or "elane.dev" or "www.elane.dev" or "elane.gay" or "www.elane.gay")
+        ctx.Response.Redirect($"https://magishira.dev{ctx.Request.Path}{ctx.Request.QueryString}", permanent: true);
+    else
+        await next();
+});
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseResponseCompression();
 app.Use(async (ctx, next) => // HTML has to revalidate, fingerprinted assets keep their year-long cache
